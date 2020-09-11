@@ -3,10 +3,12 @@
         <h1>{{title}}</h1>
     </a>
     <form class="search-form" method="GET" action="/search">
-        <input type="text" name="keywords" class="search-input" />
-        <button type="submit" class="search-submit-btn">
-            <search-icon></search-icon>
-        </button>
+        <div class="search-input">
+            <input type="text" name="keywords" class="search-input-text" />
+            <button type="submit" class="search-input-submit">
+                <search-icon></search-icon>
+            </button>
+        </div>
     </form>
 </header>
 <main class="search-results">
