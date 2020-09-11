@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SearchIconComponent } from './search-icon/search-icon.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SearchPageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SearchIconComponent
   ],
   imports: [
     BrowserModule,
