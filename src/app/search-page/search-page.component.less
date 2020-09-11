@@ -1,0 +1,55 @@
+@import "../../mediaqueries.less";
+
+.search-header {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+
+    @media @tablet {
+        justify-content: flex-start;
+        flex-direction: row;
+    }
+}
+
+.header-title {
+    display: inline-block;
+    margin: 0 1rem 0.6rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.search-form {
+    border: 1px solid #ccc;
+    border-radius: 24px;
+    display: flex;
+    height: 1.6rem;
+    max-width: 40rem;
+    padding: 0.4rem 0.8rem;
+    width: calc(100% - 1.6rem);
+
+    &:hover, &:focus-within {
+        box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
+    }
+
+    .search-input {
+        flex-grow: 1;
+        height: 1.6rem;
+        padding: 0 4px;
+
+        &, &:focus {
+            border: none;
+            outline: none;
+        }
+    }
+
+    .search-submit-btn {
+        background: transparent;
+        color: #888;
+        border: none;
+        padding: 0 4px;
+        width: 1.6rem;
+    }
+}
