@@ -1,0 +1,25 @@
+@gap-size: 1rem;
+@img-height: 200px;
+@max-img-width: 300px;
+
+.img-layout-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: @gap-size;
+    padding-top: @gap-size;
+
+    .img-layout {
+        background-color: fade(black, 5%);
+        flex-shrink: 1;
+        flex-grow: 1;
+        height: @img-height;
+        margin-right: @gap-size;
+        margin-bottom: @gap-size;
+        overflow: hidden;
+        text-align: center;
+
+        .img {
+            height: 100%;
+        }
+    }
+}
