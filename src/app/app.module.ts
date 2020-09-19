@@ -9,6 +9,7 @@ import { SearchPageComponent } from './search-page/search-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SearchIconComponent } from './search-icon/search-icon.component';
 import { ImagesLayoutComponent } from './images-layout/images-layout.component';
+import { ImageResultComponent } from './image-result/image-result.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ImagesLayoutComponent } from './images-layout/images-layout.component';
     SearchPageComponent,
     PageNotFoundComponent,
     SearchIconComponent,
-    ImagesLayoutComponent
+    ImagesLayoutComponent,
+    ImageResultComponent
   ],
   imports: [
     BrowserModule,
