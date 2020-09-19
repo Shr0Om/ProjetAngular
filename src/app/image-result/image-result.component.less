@@ -1,0 +1,66 @@
+@import '../../mediaqueries.less';
+
+@img-height: 150px;
+@img-height-md: 200px;
+
+.img-container {
+    background-color: fade(black, 5%);
+    display: block;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    height: @img-height;
+
+    @media @tablet {
+        height: @img-height-md;
+    }
+
+    @media @desktop {
+        transition: box-shadow 0.2s linear;
+
+        &:hover, &:focus-within {
+            background-color: fade(black, 10%);
+            box-shadow: 0 2px 12px 0 fade(black, 30%);
+        }
+    }
+
+    .img {
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        @media @tablet {
+            position: initial;
+            transform: none;
+            height: 100%;
+            width: auto;
+        }
+    }
+
+    .img-info {
+        background-image: linear-gradient(transparent 65%,rgba(0,0,0,.35));
+        color: white;
+        height: 100%;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        text-align: left;
+        transition: opacity 0.2s linear;
+        top: 0;
+        width: 100%;
+
+        &-captions {
+            position: absolute;
+            bottom: 0;
+            padding: 0.4rem;
+        }
+    }
+
+    &:hover, &:focus-within {
+        .img-info {
+            opacity: 100;
+        }
+    }
+}
