@@ -1,0 +1,12 @@
+<h1 mat-dialog-title class="dialog-title">
+    {{data.title}}
+    <button class="btn-close" type="button" mat-button [mat-dialog-close]>
+        <!-- Cross icon -->
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
+</h1>
+<div mat-dialog-content class="dialog-content">
+    {{data.content}}
+</div>
