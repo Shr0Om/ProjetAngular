@@ -1,21 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable ';
-
-
-@Injectable()
-export class httpService{
-    constructor(private htpp: HttpClient) { }
-
+import { ApiService } from './api.service';
+import { Image } from '../image.type';
 
 @Component({
   selector: 'app-api',
+  providers: [ApiService],
   templateUrl: './api.component.html',
   styleUrls: ['./api.component.css']
 })
 export class ApiComponent implements OnInit {
-  constructor() { }
-  ngOnInit(): void {
+  title = 'angular-httpclient';
+  image: String[] = [];
+
+
+  constructor(private api: ApiService) {}
+
+  ngOnInit() {
+    this.getImages("chien");
+  }
+
+getImages(tag: string) {
+    this.api.getImage(tag)
+      .subscribe(data => {
+        this.image = data;
+      });
   }
 
 }
