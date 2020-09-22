@@ -11,6 +11,8 @@ import { Image } from '../image.type';
 export class ApiComponent implements OnInit {
   title = 'angular-httpclient';
   image: String[] = [];
+  value = '';
+
 
 
   constructor(private api: ApiService) {}
@@ -19,11 +21,18 @@ export class ApiComponent implements OnInit {
     this.getImages("chien");
   }
 
-getImages(tag: string) {
+  
+  getImages(tag: string) {
     this.api.getImage(tag)
       .subscribe(data => {
         this.image = data;
       });
+  }
+
+
+
+  onEnter(value: string) {
+    this.getImages(value);
   }
 
 }

@@ -22,12 +22,15 @@ export class ApiService {
         return this.http.get(localurl , {
             params:{
                 method: "flickr.photos.search",
-                api_key: "250a292a0f8a61b7e329e576dd1505c7",
+                api_key: "92870031b2f3fa90fba8fc3fc73e9611",
                 tags: tag,
+                sort: "",
+                per_page: "25",
+                page: "",
                 format: "json",
                 nojsoncallback: "1",
-                auth_token: "72157716063046997-30330787026b1d31",
-                api_sig: "f8e8062a1d9e29eedd0df5d4b23028f7"
+                //auth_token: "72157716070477538-a196b321564c5914",
+                //api_sig: "8ffeffe4d4e1058c18bdd064a0fe9096"
             }
         }).pipe(map(({ photos }:{ photos: Images }) => photos.photo.map(converturl))
         );
