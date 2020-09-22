@@ -1,6 +1,8 @@
 
 <input #box (keyup.enter)="onEnter(box.value)">
 <p>{{value}}</p>
+<button (click)="newPage(box.value)">New page</button>
+
 <img *ngFor="let url of image" src={{url}} />
 
 

@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { Image, Images } from '../image.type';
 
+
 const localurl = "https://www.flickr.com/services/rest/"
 const string = "https:\/\/live.staticflickr.com\/"
 
@@ -18,7 +19,7 @@ const converturl = ({server, id, secret, resolution = "c"}:Image & {resolution: 
 @Injectable({providedIn: "root"})
 export class ApiService {
     constructor(private http: HttpClient) { }
-    getImage(tag: string) {
+    getImage(tag: string, nbPage: string) {
         return this.http.get(localurl , {
             params:{
                 method: "flickr.photos.search",
@@ -26,7 +27,7 @@ export class ApiService {
                 tags: tag,
                 sort: "",
                 per_page: "25",
-                page: "",
+                page: nbPage,
                 format: "json",
                 nojsoncallback: "1",
                 //auth_token: "72157716070477538-a196b321564c5914",

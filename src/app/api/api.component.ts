@@ -12,24 +12,28 @@ export class ApiComponent implements OnInit {
   title = 'angular-httpclient';
   image: String[] = [];
   value = '';
-
-
+  nbPage = 1;
 
   constructor(private api: ApiService) {}
 
   ngOnInit() {
-    this.getImages("chien");
-  }
+    this.getImages("hello");
 
+  }
+  newPage(tag: string){
+
+
+    this.nbPage = this.nbPage + 1;
+    this.api.getImage(tag, this.nbPage.toString())
+    .subscribe(data => {
+      this.image = data;
+    });
+  }
   
   getImages(tag: string) {
-    this.api.getImage(tag)
-      .subscribe(data => {
-        this.image = data;
-      });
+    this.nbPage = 0;
+    this.newPage(tag);
   }
-
-
 
   onEnter(value: string) {
     this.getImages(value);
