@@ -13,8 +13,8 @@ import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
     ApiComponent
   ],
   imports: [
-    HttpClientModule,
     BrowserModule,
+    HttpClientModule,
     HttpClientJsonpModule
   ],
   bootstrap: [AppComponent]

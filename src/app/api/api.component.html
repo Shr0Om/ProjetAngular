@@ -1,7 +1,18 @@
 
 <input #box (keyup.enter)="onEnter(box.value)">
 <p>{{value}}</p>
-<button (click)="newPage(box.value)">New page</button>
+<button (click)="previousPage(box.value)">Previous</button>
+<button (click)="newPage(box.value)">Next</button>
+
+
+<select class='select-option'
+    #NbResult (change)='setNbResult(box.value, NbResult.value)'>
+    <option value="10">10</option>
+    <option value="25">25</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+</select>
+
 
 <img *ngFor="let url of image" src={{url}} />
 
