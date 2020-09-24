@@ -19,12 +19,14 @@ const converturl = ({server, id, secret, resolution = "c"}:Image & {resolution: 
 @Injectable({providedIn: "root"})
 export class ApiService {
     constructor(private http: HttpClient) { }
-    getImage(tag: string, nbPage: string, nbResult: string) {
+    getImage(tag: string, nbPage: string, nbResult: string, minDate: string, maxDate: string) {
         return this.http.get(localurl , {
             params:{
                 method: "flickr.photos.search",
-                api_key: "47b6c8cb3b6052624c0f7dc5beeda6d6",
+                api_key: "1b77769965f186e3df27c0a45a2d248c",
                 tags: tag,
+                min_upload_date: minDate,
+                max_upload_date: maxDate,
                 sort: "",
                 per_page: nbResult,
                 page: nbPage,
