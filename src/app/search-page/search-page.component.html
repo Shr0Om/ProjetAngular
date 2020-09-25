@@ -1,0 +1,16 @@
+<header class="search-header">
+    <a routerLink="/" routerLinkActive="active" class="header-title">
+        <h1>{{title}}</h1>
+    </a>
+    <form class="search-form" method="GET" action="/search">
+        <div class="search-input">
+            <input type="text" name="keywords" class="search-input-text" />
+            <button type="submit" class="search-input-submit">
+                <search-icon></search-icon>
+            </button>
+        </div>
+    </form>
+</header>
+<main class="search-results">
+    <images-layout></images-layout>
+</main>

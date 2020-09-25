@@ -1,0 +1,37 @@
+@import '../../mediaqueries.less';
+
+@gap-size-md: 1rem;
+@gap-size: 0.6rem;
+
+.img-layout-container {
+    padding-left: @gap-size;
+    padding-top: @gap-size;
+
+    @media @tablet {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: @gap-size-md;
+        padding-top: @gap-size-md;
+    }
+
+    .img-layout {
+        display: block;
+        float: left;
+        margin-right: @gap-size;
+        margin-bottom: @gap-size;
+        overflow: hidden;
+        width: calc((100vw - @gap-size * 3) / 2);
+
+        @media @tablet {
+            margin-right: @gap-size-md;
+            margin-bottom: @gap-size-md;
+            flex-shrink: 1;
+            flex-grow: 1;
+            width: auto;
+        }
+
+        @media @desktop {
+            overflow: initial;
+        }
+    }
+}
