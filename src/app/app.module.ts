@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { MatDialogModule } from '@angular/material/dialog';
@@ -13,6 +14,7 @@ import { SearchIconComponent } from './search-icon/search-icon.component';
 import { ImagesLayoutComponent } from './images-layout/images-layout.component';
 import { ImageResultComponent } from './image-result/image-result.component';
 import { ImageDetailsComponent } from './image-details/image-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,10 @@ import { ImageDetailsComponent } from './image-details/image-details.component';
     HttpClientModule,
     HttpClientJsonpModule,
     AppRoutingModule,
-    MatDialogModule
+    BrowserAnimationsModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })

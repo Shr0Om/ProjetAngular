@@ -1,19 +1,30 @@
-export interface Image {
+export interface Photo {
     id: string;
     owner: string;
     secret: string;
     server: string;
     title: string;
-    farm: string;
-    ispublic: string;
-    isfriend: string;
-    isfamily: string;
-}
+    famr: number;
+};
 
-export interface Images {
-    page: number;
-    pages: number;
-    perpage: number;
-    photo: Image[];
-    total: string;
-}
+interface PhotoOwner {
+    nsid: string;
+    username: string;
+};
+
+export interface PhotoDetails {
+    id: string;
+    secret: string;
+    server: string;
+    farm: number;
+    dateuploaded: string; // Timestamp
+    owner: PhotoOwner;
+    title: string;
+    description: string;
+    dates: {
+        posted: string; // Timestamp
+        taken: string;  // YYYY-MM-dd hh:mm:ss
+        lastupdate: string; // Timestamp
+    }
+    views: string;
+};

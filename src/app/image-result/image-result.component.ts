@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, DialogPosition } from '@angular/material/dialog';
 import { ImageDetailData, ImageDetailsComponent } from '../image-details/image-details.component';
+import { Photo } from '../image.type';
+import { convertImageUrl } from '../api/api.service';
 
 @Component({
   selector: 'image-result',
@@ -8,9 +10,7 @@ import { ImageDetailData, ImageDetailsComponent } from '../image-details/image-d
   styleUrls: ['./image-result.component.less']
 })
 export class ImageResultComponent implements OnInit {
-  @Input() src: String;
-  title = 'Title';
-  subTitle = 'Sub title';
+  @Input() img: Photo;
 
   constructor(public dialog: MatDialog) { }
 
@@ -19,7 +19,11 @@ export class ImageResultComponent implements OnInit {
 
   openInfos() {
     this.dialog.open<ImageDetailsComponent, ImageDetailData>(ImageDetailsComponent, {
-      data: { title: this.title, content: this.subTitle }
+      data: { title: this.img.title, content: '' }
     });
   };
+
+  getUrl() {
+    return convertImageUrl({photo: this.img});
+  }
 }

@@ -1,9 +1,8 @@
 <a class="img-container" (click)="openInfos()">
-    <img class="img" [src]="src">
+    <img class="img" [src]="getUrl()">
     <a class="img-info">
         <div class="img-info-captions">
-            {{title}}
-            <div class="img-info-captions-sub-title">{{subTitle}}</div>
+            {{img.title}}
         </div>
     </a>
 </a>

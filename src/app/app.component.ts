@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ApiComponent } from './api/api.component';
 
 @Component({
   selector: 'app-root',
