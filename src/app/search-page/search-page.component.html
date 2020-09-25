@@ -3,20 +3,24 @@
         <a routerLink="/" routerLinkActive="active" class="header-title">
             <h1>{{title}}</h1>
         </a>
-        <form class="search-form" #search="ngForm" (submit)="onSubmit($event)">
+        <form class="search-form" #search="ngForm" (submit)="onSubmit($event)" [formGroup]="fields">
             <div class="search-input">
-                <input type="text" name="keywords" class="search-input-text" [formControl]="keywords"/>
+                <input type="text" name="keywords" class="search-input-text" formControlName="keywords" />
                 <button type="submit" class="search-input-submit">
                     <search-icon></search-icon>
                 </button>
+            </div>
+            <div class="search-options">
+                <mat-slide-toggle class="search-option" name="isSafe" (change)="submitSearch()" [color]="color" formControlName="isSafe">Safe Search</mat-slide-toggle>
+                <mat-slide-toggle class="search-option" name="isGallery" (change)="submitSearch()" [color]="color" formControlName="isGallery">Gallery Search</mat-slide-toggle>
             </div>
         </form>
     </header>
     <main class="search-results">
         <images-layout [imgs]="images"></images-layout>
-        <button
+        <button *ngIf="hasMore"
             type="button"
-            [ngClass]="{'view-more-btn': true, 'no-more': !hasMore}"
+            class="view-more-btn"
             (click)="submitSeeMore()">
             {{seeMoreLabel}}
         </button>
