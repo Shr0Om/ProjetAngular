@@ -19,6 +19,10 @@ export class ApiComponent implements OnInit {
   nbResult= 25;
   minDate = "";
   maxDate = "";
+  isSafeSearch = "0";
+  inGallery = "0";
+  resolution = "c";
+
 
 
   constructor(private api: ApiService) {}
@@ -28,7 +32,7 @@ export class ApiComponent implements OnInit {
   }
   newPage(tag: string){
     this.nbPage = this.nbPage + 1;
-    this.api.getImage(tag, this.nbPage.toString(), this.nbResult.toString(), this.minDate, this.maxDate).subscribe(data => {
+    this.api.getImage(tag, this.nbPage.toString(), this.nbResult.toString(), this.minDate, this.maxDate, this.isSafeSearch, this.inGallery).subscribe(data => {
       this.image = data;
     });
   }
@@ -60,15 +64,27 @@ export class ApiComponent implements OnInit {
   }
 
   
-  searchWithFilter(minDate: Date, maxDate: Date,value : string){
+  searchWithFilter(minDate: Date, maxDate: Date, value: string, isSafeSearch: string, inGallery: string, resolution: string){
     this.setDate(minDate.toString(), maxDate.toString());
+    this.setInGallery(inGallery);
+    this.setSafeSearch(isSafeSearch);
+    this.setResolution(resolution);
     this.getImages(value);
-
   }
 
   setDate(minDate: string, maxDate: string){
     this.minDate = minDate;
     this.maxDate = maxDate;
+  }
 
+  setInGallery(inGallery: string){
+    this.inGallery = inGallery
+  }
+
+  setSafeSearch(isSafeSearch: string){
+    this.isSafeSearch = isSafeSearch;
+  }
+  setResolution(resolution: string){
+    this.resolution = resolution;
   }
 }
