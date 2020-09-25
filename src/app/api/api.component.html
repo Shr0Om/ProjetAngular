@@ -1,1 +1,28 @@
-<p>api works!</p>
+
+<input #box (keyup.enter)="onEnter(box.value)">
+<p>{{value}}</p>
+<button (click)="previousPage(box.value)">Previous</button>
+<button (click)="newPage(box.value)">Next</button>
+
+
+<select class='select-option'
+    #NbResult (change)='setNbResult(box.value, NbResult.value)'>
+    <option value="10">10</option>
+    <option value="25">25</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+</select>
+
+<div class="filter">
+    <label for="start">min-upload:</label>
+    <input #dateMin type="date" id="maxup" name="min-upload" value="" min="2018-01-01" max="2018-12-31">
+    <br/>
+    <label for="start">max-upload:</label>
+    <input #dateMax type="date" id="minup" name="max-upload" value="" min="2018-01-01" max="2018-12-31">
+
+    <button (click)="searchWithFilter(dateMin.value, dateMax.value, box.value)">valider les filtres</button>
+
+</div>
+<img *ngFor="let url of image" src={{url}} />
+
+
