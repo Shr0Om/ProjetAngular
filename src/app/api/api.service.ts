@@ -35,7 +35,7 @@ export class ApiService {
         nbResult = 25,
         minDate = '',
         maxDate = '',
-        isSafe = false,
+        isSafe = true,
         isGallery = false
     }: SearchParams) {
         return this.http.get<SearchResponse>(localUrl, {
@@ -55,7 +55,7 @@ export class ApiService {
                 //auth_token: "72157716070477538-a196b321564c5914",
                 //api_sig: "8ffeffe4d4e1058c18bdd064a0fe9096"
             }
-        }).pipe(map(data => data?.photos.photo));
+        }).pipe(map(data => data.photos?.photo));
     }
 
     getImageDetails(id: number) {

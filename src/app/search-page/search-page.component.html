@@ -1,22 +1,24 @@
-<header class="search-header">
-    <a routerLink="/" routerLinkActive="active" class="header-title">
-        <h1>{{title}}</h1>
-    </a>
-    <form class="search-form" #search="ngForm" (submit)="onSubmit($event)">
-        <div class="search-input">
-            <input type="text" name="keywords" class="search-input-text" [formControl]="keywords"/>
-            <button type="submit" class="search-input-submit">
-                <search-icon></search-icon>
-            </button>
-        </div>
-    </form>
-</header>
-<main class="search-results">
-    <images-layout [imgs]="images"></images-layout>
-    <button
-        type="button"
-        [ngClass]="{'view-more-btn': true, 'no-more': !hasMore}"
-        (click)="submitSeeMore()">
-        {{seeMoreLabel}}
-    </button>
-</main>
+<div [ngClass]="{'no-search': noSearch}">
+    <header class="search-header">
+        <a routerLink="/" routerLinkActive="active" class="header-title">
+            <h1>{{title}}</h1>
+        </a>
+        <form class="search-form" #search="ngForm" (submit)="onSubmit($event)">
+            <div class="search-input">
+                <input type="text" name="keywords" class="search-input-text" [formControl]="keywords"/>
+                <button type="submit" class="search-input-submit">
+                    <search-icon></search-icon>
+                </button>
+            </div>
+        </form>
+    </header>
+    <main class="search-results">
+        <images-layout [imgs]="images"></images-layout>
+        <button
+            type="button"
+            [ngClass]="{'view-more-btn': true, 'no-more': !hasMore}"
+            (click)="submitSeeMore()">
+            {{seeMoreLabel}}
+        </button>
+    </main>
+</div>

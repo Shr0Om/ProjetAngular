@@ -15,7 +15,9 @@ export class SearchPageComponent implements OnInit {
   title = 'Search Engine';
   seeMoreLabel = 'Voir plus d\'images';
   hasMore = false;
+  noSearch = true;
   currentPage = 1;
+  nbPerPage = 25;
   images: Photo[] = [];
   keywords: FormControl;
 
@@ -26,34 +28,47 @@ export class SearchPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
-      const tag = params['keywords'];
+      const tag = params['tag'];
       this.keywords = new FormControl(tag);
-      this.submitSearch({tag, nbPage: 0});
+      this.submitSearch({...params, tag});
     });
   }
 
   onSubmit(e: Event) {
     e.preventDefault();
-    this.currentPage = 0;
-    this.submitSearch({tag: this.keywords.value, nbPage: 0});
+    this.currentPage = 1;
+    this.submitSearch({
+      tag: this.keywords.value,
+      nbPage: 1,
+      nbResult: this.nbPerPage
+    });
     return false;
   }
 
   submitSearch(params: SearchParams) {
-      this.api.getImages(params).subscribe(images => {
-        this.images = images;
-        if (images.length === params.nbResult)
-          this.hasMore = true;
-      });
+    this.noSearch = !this.keywords.value;
+    if (!this.keywords.value)
+      return
+
+    history.pushState({}, '', '?'.concat(Object.keys(params).map(
+      key => `${key}=${params[key]}`
+    ).join('&')));
+
+    this.api.getImages(params).subscribe(images => {
+      this.images = images;
+        this.hasMore = images.length === params.nbResult;
+    });
   }
 
   submitSeeMore() {
-      this.currentPage++;
-      this.api.getImages({tag: this.keywords.value, nbPage: this.currentPage}).subscribe(images => {
-        if (images.length === 0)
-          this.hasMore = false;
-        else
-          this.images = [...this.images, ...images];
-      });
+    this.currentPage++;
+    this.api.getImages({
+      tag: this.keywords.value,
+      nbPage: this.currentPage,
+      nbResult: this.nbPerPage
+    }).subscribe(images => {
+      this.hasMore = images.length === this.nbPerPage
+      this.images = [...this.images, ...images];
+    });
   }
 }
