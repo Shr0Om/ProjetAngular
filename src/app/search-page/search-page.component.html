@@ -4,7 +4,7 @@
     </a>
     <form class="search-form" method="GET" action="/search">
         <div class="search-input">
-            <input type="text" name="keywords" class="search-input-text" />
+            <input type="text" name="keywords" class="search-input-text" required pattern="^[^\s]+(\s.*)?$"/>
             <button type="submit" class="search-input-submit">
                 <search-icon></search-icon>
             </button>
