@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog, DialogPosition } from '@angular/material/dialog';
+import { ImageDetailData, ImageDetailsComponent } from '../image-details/image-details.component';
 
 @Component({
   selector: 'image-result',
@@ -10,13 +12,14 @@ export class ImageResultComponent implements OnInit {
   title = 'Title';
   subTitle = 'Sub title';
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
-  clickHandler() {
-    console.log('clicked');
-  }
-
+  openInfos() {
+    this.dialog.open<ImageDetailsComponent, ImageDetailData>(ImageDetailsComponent, {
+      data: { title: this.title, content: this.subTitle }
+    });
+  };
 }
