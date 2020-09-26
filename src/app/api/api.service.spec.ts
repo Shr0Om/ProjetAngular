@@ -16,13 +16,6 @@ describe('Api service', () => {
         })
     });
 
-    it('getImageUrls', () => {
-        service.getImageUrls({tag: 'evian'}).subscribe(result => {
-            expect(result).not.toBeUndefined();
-            console.log(result);
-        })
-    });
-
     it('getImageDetails', () => {
         service.getImageDetails(50382077582).subscribe(result => {
             expect(result).not.toBeUndefined();

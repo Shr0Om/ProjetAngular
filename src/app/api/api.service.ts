@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PhotoDetails } from '../image.type';
 import { SearchParams, Resolution, SearchResponse } from './api.service.type';
-
 const localUrl = "https://www.flickr.com/services/rest/";
 const liveUrl = "https:\/\/live.staticflickr.com\/";
 const photoSearchMethod = 'flickr.photos.search';
