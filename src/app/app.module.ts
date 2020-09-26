@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
@@ -15,6 +18,7 @@ import { ImagesLayoutComponent } from './images-layout/images-layout.component';
 import { ImageResultComponent } from './image-result/image-result.component';
 import { ImageDetailsComponent } from './image-details/image-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -34,8 +38,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MatDialogModule,
     MatSlideToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   bootstrap: [AppComponent]
 })

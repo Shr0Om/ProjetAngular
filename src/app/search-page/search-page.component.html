@@ -1,6 +1,6 @@
 <div [ngClass]="{'no-search': noSearch}">
     <header class="search-header">
-        <a routerLink="/" routerLinkActive="active" class="header-title">
+        <a class="header-title">
             <h1>{{title}}</h1>
         </a>
         <form class="search-form" #search="ngForm" (submit)="onSubmit($event)" [formGroup]="fields">
@@ -13,6 +13,18 @@
             <div class="search-options">
                 <mat-slide-toggle class="search-option" name="isSafe" (change)="submitSearch()" [color]="color" formControlName="isSafe">Safe Search</mat-slide-toggle>
                 <mat-slide-toggle class="search-option" name="isGallery" (change)="submitSearch()" [color]="color" formControlName="isGallery">Gallery Search</mat-slide-toggle>
+                <mat-form-field class="search-option">
+                    <mat-label>Mini date</mat-label>
+                    <input matNativeControl formControlName="minDate" (dateChange)="submitSearch()" [matDatepicker]="minDate" [max]="fields.controls.maxDate.value">
+                    <mat-datepicker-toggle matSuffix [for]="minDate"></mat-datepicker-toggle>
+                    <mat-datepicker #minDate></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="search-option">
+                    <mat-label>Max date</mat-label>
+                    <input matNativeControl formControlName="maxDate" (dateChange)="submitSearch() "[matDatepicker]="maxDate" [min]="fields.controls.minDate.value" [max]="today">
+                    <mat-datepicker-toggle matSuffix [for]="maxDate"></mat-datepicker-toggle>
+                    <mat-datepicker #maxDate></mat-datepicker>
+                </mat-form-field>
             </div>
         </form>
     </header>

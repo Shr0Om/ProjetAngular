@@ -5,6 +5,8 @@ import { ApiService } from '../api/api.service';
 import { SearchParams } from '../api/api.service.type';
 import { Photo } from '../image.type';
 
+const formatDate = (date: Date): string => new Intl.DateTimeFormat().format(date);
+
 @Component({
   selector: 'app-search-page',
   providers: [ApiService],
@@ -15,6 +17,7 @@ export class SearchPageComponent implements OnInit {
   title = 'Search Engine';
   seeMoreLabel = 'Voir plus d\'images';
   color = 'primary';
+  today = new Date();
 
   private nbPerPage: number = 25;
   private currentPage: number = 1;
@@ -35,13 +38,17 @@ export class SearchPageComponent implements OnInit {
       const {tag, isSafe, isGallery, minDate, maxDate} = params;
       this.fields = this.fb.group({
           keywords: [tag],
-          isSafe: [isSafe ?? true],
-          isGallery: [isGallery ?? false],
-          // minDate: [minDate ?? ''],
-          // maxDate: [maxDate ?? '']
+          isSafe: [isSafe || true],
+          isGallery: [isGallery || false],
+          minDate: [minDate || ''],
+          maxDate: [maxDate || this.today]
       });
       this.submitSearch();
     });
+  }
+
+  getMinDate() {
+    return this.fields.controls['minDate'];
   }
 
   onSubmit(e: Event) {
@@ -59,8 +66,22 @@ export class SearchPageComponent implements OnInit {
     return {
       tag,
       isSafe,
-      isGallery,
+      isGallery
     };
+  }
+
+  getImages() {
+    const {
+      minDate: {value: minDate},
+      maxDate: {value: maxDate}
+    } = this.fields.controls;
+    return this.api.getImages({
+      ...this.getParams(),
+      minDate: formatDate(minDate),
+      maxDate: formatDate(maxDate),
+      nbResult: this.nbPerPage,
+      nbPage: this.currentPage
+    });
   }
 
   submitSearch() {
@@ -74,11 +95,7 @@ export class SearchPageComponent implements OnInit {
       key => `${key}=${params[key]}`
     ).join('&')));
 
-    this.api.getImages({
-      ...params,
-      nbResult: this.nbPerPage,
-      nbPage: this.currentPage
-    }).subscribe(images => {
+    this.getImages().subscribe(images => {
       this.images = images;
       this.hasMore = images.length === this.nbPerPage;
     });
@@ -86,11 +103,7 @@ export class SearchPageComponent implements OnInit {
 
   submitSeeMore() {
     this.currentPage++;
-    this.api.getImages({
-      ...this.getParams(),
-      nbPage: this.currentPage,
-      nbResult: this.nbPerPage
-    }).subscribe(images => {
+    this.getImages().subscribe(images => {
       this.hasMore = images.length === this.nbPerPage
       this.images = [...this.images, ...images];
     });
