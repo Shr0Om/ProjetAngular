@@ -18,9 +18,9 @@ export interface PhotoDetails {
     server: string;
     farm: number;
     dateuploaded: string; // Timestamp
-    owner: PhotoOwner;
-    title: string;
-    description: string;
+    owner: PhotoOwner ;
+    title: {_content: string};
+    description: {_content: string};
     dates: {
         posted: string; // Timestamp
         taken: string;  // YYYY-MM-dd hh:mm:ss

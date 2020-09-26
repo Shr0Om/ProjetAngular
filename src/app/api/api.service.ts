@@ -34,7 +34,7 @@ export class ApiService {
         nbResult = 25,
         minDate = '',
         maxDate = '',
-        isSafe = true,
+        isSafe = false,
         isGallery = false
     }: SearchParams) {
         return this.http.get<SearchResponse>(localUrl, {
@@ -45,24 +45,24 @@ export class ApiService {
                 min_upload_date: minDate,
                 max_upload_date: maxDate,
                 safe_search: isSafe.toString(),
-                is_gallery: isGallery.toString(),
+                n_gallery: isGallery.toString(),
                 sort: "",
                 per_page: nbResult.toString(),
                 page: nbPage.toString(),
                 format: "json",
                 nojsoncallback: "1"
-                //auth_token: "72157716070477538-a196b321564c5914",
-                //api_sig: "8ffeffe4d4e1058c18bdd064a0fe9096"
             }
-        }).pipe(map(data => data.photos?.photo));
+        }).pipe(map(data => data?.photos.photo));
     }
 
-    getImageDetails(id: number) {
+    getImageDetails(id: String) {
         return this.http.get<{photo: PhotoDetails}>(localUrl, {
             params: {
                 method: photoGetInfoMethod,
                 api_key: this.apiKey,
-                photo_id: id.toString()
+                photo_id: id.toString(),
+                format: "json",
+                nojsoncallback: "1"
             }
         }).pipe(map(data => data.photo));
     }

@@ -1,20 +1,44 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ApiService, convertImageUrl } from '../api/api.service';
+import { Resolution } from '../api/api.service.type';
+import { Photo, PhotoDetails } from '../image.type';
+
 
 export interface ImageDetailData {
   title: String;
-  content: any;
+  id: String;
 }
+
 
 @Component({
   selector: 'app-image-details',
   templateUrl: './image-details.component.html',
-  styleUrls: ['./image-details.component.less']
+  styleUrls: ['./image-details.component.less'],
+  providers: [ApiService]
 })
 export class ImageDetailsComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: ImageDetailData) { }
+  photo: any = {
+    title: {},
+    owner: {},
+    description: {}
+  };
+
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) 
+    public data: ImageDetailData,
+    private api: ApiService
+  ) { }
 
   ngOnInit(): void {
+    
+    this.api.getImageDetails(this.data.id).subscribe(photo => this.photo = photo);
+
+  }
+
+  getUrl() {
+    return convertImageUrl({photo: this.photo, resolution: Resolution.large});
   }
 }

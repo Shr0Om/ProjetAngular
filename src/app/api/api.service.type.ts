@@ -13,7 +13,7 @@ export interface SearchParams {
 export enum Resolution {
     small = 's',
     medium = 'm',
-    large = 'l'
+    large = 'b'
 };
 
 export interface Photos {
