@@ -45,7 +45,7 @@ export class ApiService {
                 min_upload_date: minDate,
                 max_upload_date: maxDate,
                 safe_search: isSafe.toString(),
-                n_gallery: isGallery.toString(),
+                is_gallery: isGallery.toString(),
                 sort: "",
                 per_page: nbResult.toString(),
                 page: nbPage.toString(),
