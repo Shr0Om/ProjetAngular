@@ -4,12 +4,10 @@ import { ApiService, convertImageUrl } from '../api/api.service';
 import { Resolution } from '../api/api.service.type';
 import { Photo, PhotoDetails } from '../image.type';
 
-
 export interface ImageDetailData {
   title: String;
   id: String;
 }
-
 
 @Component({
   selector: 'app-image-details',
@@ -25,20 +23,23 @@ export class ImageDetailsComponent implements OnInit {
     description: {}
   };
 
-
   constructor(
-    @Inject(MAT_DIALOG_DATA) 
+    @Inject(MAT_DIALOG_DATA)
     public data: ImageDetailData,
     private api: ApiService
   ) { }
 
   ngOnInit(): void {
-    
-    this.api.getImageDetails(this.data.id).subscribe(photo => this.photo = photo);
-
+    this.api.getImageDetails(this.data.id).subscribe(photo =>
+      this.photo = ({
+        ...photo,
+        dateuploaded: (new Date(Number(photo.dateuploaded) * 1000).toLocaleDateString('fr-FR'))
+      }));
   }
 
   getUrl() {
-    return convertImageUrl({photo: this.photo, resolution: Resolution.large});
+    return this.photo['server']
+      ? convertImageUrl({photo: this.photo, resolution: Resolution.large})
+      : '';
   }
 }
