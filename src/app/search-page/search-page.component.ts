@@ -19,7 +19,7 @@ export class SearchPageComponent implements OnInit {
   color = 'primary';
   today = new Date();
 
-  private nbPerPage: number = 25;
+  private nbPerPage: number = 26;
   private currentPage: number = 1;
 
   hasMore = false;

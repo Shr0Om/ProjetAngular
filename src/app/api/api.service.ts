@@ -31,7 +31,7 @@ export class ApiService {
     getImages({
         tag,
         nbPage = 1,
-        nbResult = 25,
+        nbResult = 26,
         minDate = '',
         maxDate = '',
         isSafe = false,
