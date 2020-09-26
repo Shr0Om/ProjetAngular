@@ -1,27 +1,5 @@
 @import "../../mediaqueries.less";
 
-.no-search {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-
-    .search-header {
-        flex-direction: column;
-        box-shadow: none;
-        width: 80%;
-
-        .search-input {
-            margin-left: auto;
-            margin-right: auto;
-        }
-    }
-    .search-results {
-        display: none;
-    }
-}
-
 .search-header {
     box-shadow: 0 7px 6px -5px #ddd;
     display: flex;
@@ -91,6 +69,10 @@
             justify-content: center;
             flex-wrap: wrap;
 
+            @media @tablet {
+                justify-content: flex-start;
+            }
+
             .search-option {
                 margin-right: 0.8rem;
             }
@@ -107,5 +89,38 @@
 
     &:hover {
         background-color: #ccc;
+    }
+}
+
+.search-error {
+    margin-top: 2rem;
+    display: block;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.no-search {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .search-header {
+        flex-direction: column;
+        box-shadow: none;
+        width: 80%;
+
+        .search-input {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-options {
+            justify-content: center;
+        }
+    }
+    .search-results, .search-error {
+        display: none;
     }
 }

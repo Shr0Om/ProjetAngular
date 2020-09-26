@@ -28,7 +28,7 @@
             </div>
         </form>
     </header>
-    <main class="search-results">
+    <main class="search-results" *ngIf="images.length > 0">
         <images-layout [imgs]="images"></images-layout>
         <button *ngIf="hasMore"
             type="button"
@@ -37,4 +37,7 @@
             {{seeMoreLabel}}
         </button>
     </main>
+    <b class="search-error" *ngIf="images.length === 0">
+        Aucun résultat n'a pu être trouvé
+    </b>
 </div>
