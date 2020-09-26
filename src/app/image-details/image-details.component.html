@@ -14,6 +14,6 @@
     </div>
     <p>Auteur: {{photo.owner.username}} </p>
     <p>Date de publication: {{photo.dateuploaded}} </p>
-    <p>Description: {{photo.description._content}} </p>
+    <p>Description: <span [innerHTML]="photo.description._content"></span></p>
     <p>Nombre de vue: {{photo.views}} </p>
 </div>
